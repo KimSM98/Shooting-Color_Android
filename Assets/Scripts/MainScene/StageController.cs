@@ -18,10 +18,7 @@ public class StageController : MonoBehaviour
         //isSave = false; //Reset
         if(!isSave){//처음 실행
             Debug.Log("처음 실행");
-            //StageController.instance.SetStage();
-            //ErrorObj.gameObject.SetActive(true);
             SetStage();//create save data 
-            //PlayerPrefs.SetInt("RecentStage", 0);
         }   
         else stageData = loadData<StageData>("stageData");
 
@@ -33,8 +30,6 @@ public class StageController : MonoBehaviour
             PlayerPrefs.DeleteKey("CurrentScore");//key지워줌
         }
         Time.timeScale = 1;  
-//
-        //LoadStageDataFromJson();
     }
 
     [ContextMenu("To Json Data")]
@@ -75,15 +70,12 @@ public class StageController : MonoBehaviour
         //Exit if Directory or File does not exist
         if (!Directory.Exists(Path.GetDirectoryName(tempPath)))
         {
-            //ErrorText.text = "Directory does not exist";
             Debug.LogWarning("Directory does not exist");
             return default(T);
         }
 
         if (!File.Exists(tempPath))
         {
-            //ErrorText.text = "File does not exist";
-            //ErrorObj.gameObject.SetActive(true);
             Debug.Log("File does not exist");
             return default(T);
         }
@@ -92,13 +84,11 @@ public class StageController : MonoBehaviour
         byte[] jsonByte = null;
         try
         {
-            //ErrorText.text = "Loaded Data";
             jsonByte = File.ReadAllBytes(tempPath);
             Debug.Log("Loaded Data from: " + tempPath.Replace("/", "\\"));
         }
         catch (Exception e)
         {
-            //ErrorText.text = "Failed To Load Data";
             Debug.LogWarning("Failed To Load Data from: " + tempPath.Replace("/", "\\"));
             Debug.LogWarning("Error: " + e.Message);
         }

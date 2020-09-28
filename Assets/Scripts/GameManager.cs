@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; 
     public GameObject Monster;
     public GameObject Boss;
-    public float Speed = 0.1f; //Speed: 0(Pause)
+    public float Speed = 0.05f; //Speed: 0(Pause), 0.05f(defalt), 0.5f(Android)
     public Text Text_KillMonsterNum;
     public Text Text_KilledMonsterNum;
     public GameObject GameEndingObj;

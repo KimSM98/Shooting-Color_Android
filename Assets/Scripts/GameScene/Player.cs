@@ -21,11 +21,7 @@ public class Player : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D coll)
-    {
-        /*if(coll.CompareTag("Enemy")){
-            Attacked();
-            GameManager.instance.DecreaseMonsterNum();
-        }*/
+    {        
         if(coll.CompareTag("Boss")){
             GameManager.instance.GameOver();
             GetComponent<Animator>().SetTrigger("IsDead");

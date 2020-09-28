@@ -7,19 +7,15 @@ public class Boss : Enemy
 {
     public static Boss instance;
     public AnimatorOverrideController[] AnimController;
-    //public int Hp;
-    private int Hp;
+    //private int Hp;
     public GameObject HpBar;
 
     Animator BossAnim;
     bool isBossDead;
-    public Boss(){
-        //Hp = GameManager.instance.GetBossHP();
-    }
     void Start()
     {
         isBossDead = false;
-        Hp = GameManager.instance.GetBossHP();//0619
+        Hp = GameManager.instance.GetBossHP();
         HpBar.GetComponent<HpBar>().SetHp(Hp);        
         Debug.Log("boss" + Hp);
 
@@ -29,9 +25,6 @@ public class Boss : Enemy
 
         SetAnim();
         gameObject.SetActive(false);
-        /*int ranNum = Random.Range(0,AnimController.Length);
-        BossAnim.runtimeAnimatorController = AnimController[ranNum];
-        */
     }
     private void SetAnim(){
         int ranNum = Random.Range(0,AnimController.Length);
@@ -45,7 +38,7 @@ public class Boss : Enemy
     public override void Attacked()
     {
         Hp -= 1;
-        HpBar.GetComponent<HpBar>().OffHpItem();//0901
+        HpBar.GetComponent<HpBar>().OffHpItem();
 
         if(Hp == 0){
             GetComponent<Animator>().SetTrigger("Dead");
