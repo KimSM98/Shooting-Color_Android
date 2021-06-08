@@ -16,7 +16,7 @@ public class Boss : Enemy
     {
         isBossDead = false;
         Hp = GameManager.instance.GetBossHP();
-        HpBar.GetComponent<HpBar>().SetHp(Hp);        
+        //HpBar.GetComponent<HpBar>().SetHp(Hp);        
         Debug.Log("boss" + Hp);
 
         instance = this;
@@ -38,14 +38,14 @@ public class Boss : Enemy
     public override void Attacked()
     {
         Hp -= 1;
-        HpBar.GetComponent<HpBar>().OffHpItem();
+        //HpBar.GetComponent<HpBar>().OffHpItem();
 
         if(Hp == 0){
             GetComponent<Animator>().SetTrigger("Dead");
             GameManager.instance.GameClear();
             isBossDead = true;
         }
-        AttackManagerScript.instance.DecreaseStarNum(isBossDead);
+        //AttackManagerScript.instance.DecreaseStarNum(isBossDead);
     }
     public void OffObj(){
         gameObject.SetActive(false);

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class StageController : MonoBehaviour
 {  
     public static StageController instance;
-    public StageData stageData;
+    public StageScores stageData;
     bool isSave;
     void Awake()
     {
@@ -20,7 +20,7 @@ public class StageController : MonoBehaviour
             Debug.Log("처음 실행");
             SetStage();//create save data 
         }   
-        else stageData = loadData<StageData>("stageData");
+        else stageData = loadData<StageScores>("stageData");
 
         if(PlayerPrefs.HasKey("CurrentScore")){
             Debug.Log("전 스테이지의 점수가 있습니다.");
@@ -108,30 +108,30 @@ public class StageController : MonoBehaviour
         if(score > stageData.GetScore(stageNum)){
             stageData.Save(stageNum, score);
             saveData(stageData, "stageData");
-            stageData = loadData<StageData>("stageData");
+            stageData = loadData<StageScores>("stageData");
         }
     }
 
     public void SetStage(){
-        stageData = new StageData();
+        stageData = new StageScores();
         stageData.SetStageScore();
         saveData(stageData, "stageData");
     }
    
 }
 [System.Serializable]
-public class StageData
+public class StageScores
 {
-    public int[] StageScores = new int[11];//0925이쪽이 현재 문제
+    public int[] StageScore1 = new int[11];//0925이쪽이 현재 문제
     
     public void Save(int stageNum, int score){
-        StageScores[stageNum] = score;
+        StageScore1[stageNum] = score;
     }
     public int GetScore(int stageNum){
-        return StageScores[stageNum];
+        return StageScore1[stageNum];
     }
     public void SetStageScore(){
-        for(int i=0; i < StageScores.Length; i++)
-            StageScores[i] = 0;
+        for(int i=0; i < StageScore1.Length; i++)
+            StageScore1[i] = 0;
     }
 }

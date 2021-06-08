@@ -11,16 +11,26 @@ public class GameUIButton : MonoBehaviour
     public Sprite[] SoundSpr;
     public Button PauseButton;
     public Sprite[] PauseSpr;
+
     private int soundvalue;
     private int isPause = 1;
 
     void Start()
     {
         soundvalue = 0;
-        SoundButtonFunc();        
-        //Sound = 사운드 데이터
-        PauseButtonFunc();
+        //SoundButtonFunc();        
+        //Sound = 사운드 데이터        
+        if(SceneManager.GetActiveScene().name != "MainScene")
+            PauseButtonFunc();
         //isPause = 0;
+        if(PlayerPrefs.GetInt("Sound") == 0){
+            SoundManager.instance.muteAudio(true);
+            SoundButton.image.sprite = SoundSpr[0];
+        }
+        else{
+            SoundManager.instance.muteAudio(false);
+            SoundButton.image.sprite = SoundSpr[1];
+        }
     }
     public void QuitButtonYes(){
         PlayerPrefs.SetInt("GameScene", 0);//?존재의 의미?
@@ -36,14 +46,16 @@ public class GameUIButton : MonoBehaviour
     }
 
     public void SoundButtonFunc(){
-        if(soundvalue == 0){
-            soundvalue = 1;
+        if(PlayerPrefs.GetInt("Sound") == 0){
+            PlayerPrefs.SetInt("Sound", 1);
+            SoundManager.instance.muteAudio(false);
             SoundButton.image.sprite = SoundSpr[1];
         }
-        else{
-            soundvalue = 0;
+        else if(PlayerPrefs.GetInt("Sound") == 1){
+            PlayerPrefs.SetInt("Sound", 0);
+            SoundManager.instance.muteAudio(true);
             SoundButton.image.sprite = SoundSpr[0];    
-        } 
+        }
     }
     public void MainButtonFunc(){
         SceneManager.LoadScene("MainScene");

@@ -47,7 +47,6 @@ public class Enemy : MonoBehaviour
             EnemyManagerScript.instance.SpawnEnemy();//스폰은 애니메이션 끝나고
             gameObject.SetActive(true);     
         }         
-
     }
 
     public int GetColorNum(){

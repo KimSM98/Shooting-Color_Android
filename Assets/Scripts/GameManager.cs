@@ -12,19 +12,19 @@ public class GameManager : MonoBehaviour
     public Text Text_KillMonsterNum;
     public Text Text_KilledMonsterNum;
     public GameObject GameEndingObj;
+    public bool isBossMove;
+    public bool isGameOver = false;
 
     int killedMonsterNum;
     int[] SpawnEnemyArr;
     int enemyNum;
-    int bossHP;
-    public bool isBossMove;
+    int bossHP;    
     bool isMonsterMove;
-    int multiple5;//5배수
-    public bool isGameOver = false;
+    int multiple5;//5배수    
     int stageNum;
 
     void Awake()
-    {
+    {        
         stageNum = PlayerPrefs.GetInt("RecentStage");
         instance = this;
         AssignStageInfo();
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
             Monster.SetActive(false);
             Boss.SetActive(true);
             isBossMove = true;
-            AttackManagerScript.instance.ActiveNumStar5();   
+            //AttackManagerScript.instance.ActiveNumStar5();   
         }
     }
     public void IncreaseKilledNum(){
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         Text_KilledMonsterNum.text = "" + killedMonsterNum;
         //5배수가 되면 별 켜져야함
         if(killedMonsterNum/multiple5 == 1){
-            AttackManagerScript.instance.ActiveStarButton();
+            //AttackManagerScript.instance.ActiveStarButton();
             multiple5+=5;
         }
     }
