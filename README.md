@@ -26,4 +26,4 @@ Google Play : https://play.google.com/store/apps/details?id=com.TML.ShootingColo
 
 
 ## Video
-Youtube : https://youtu.be/l9ElpkpWlv4
+[![Video Label](http://img.youtube.com/vi/l9ElpkpWlv4/0.jpg)](https://youtu.be/l9ElpkpWlv4)
